@@ -1,22 +1,61 @@
 const players = [1, 2];
 let currentIndex = 0;
+let gameActive = true; // Un nouveau drapeau pour vérifier si le jeu est actif
 
 function getNextPlayer() {
-  const player = players[currentIndex];
-  currentIndex = 1 - currentIndex; 
-  return player;
+    const player = players[currentIndex];
+    currentIndex = 1 - currentIndex;
+    return player;
 }
 
 const squares = document.querySelectorAll(".cell");
+
 squares.forEach(square => {
     square.addEventListener('click', () => {
-        if (square.textContent === '') {
+        // Vérifie si la case est vide et si le jeu est toujours actif
+        if (square.textContent === '' && gameActive) {
             const player = getNextPlayer();
-            if (player === 1) {
-                square.textContent = "X";
-            } else if (player === 2) {
-                square.textContent = "O";
-            }
+            square.textContent = player === 1 ? "X" : "O";
+            checkWin();
         }
     });
 });
+
+let win = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+];
+
+function checkWin() {
+    for (let condition of win) {
+        const [a, b, c] = condition;
+        if (squares[a].textContent && squares[a].textContent === squares[b].textContent && squares[a].textContent === squares[c].textContent) {
+            alert(`Le joueur ${squares[a].textContent} a gagné !`);
+            gameActive = false;
+            return;
+        }
+    }
+
+    const isDraw = Array.from(squares).every(square => square.textContent !== '');
+    if (isDraw) {
+        alert("Draw!");
+        gameActive = false;
+        return;
+    }
+}
+
+function resetGame() {
+    squares.forEach(square => {
+        square.textContent = '';
+    });
+    gameActive = true; 
+    currentIndex = 0; 
+}
+
+document.getElementById('resetButton').addEventListener('click', resetGame);
