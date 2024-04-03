@@ -21,3 +21,8 @@ body {
   font-size: 2em;
   border: 1px solid #333;
 }
+
+#resetButton{
+  margin-left: 100px;
+  margin-top: 25px;
+}
