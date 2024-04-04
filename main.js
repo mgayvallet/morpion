@@ -44,7 +44,7 @@ function checkWin() {
 
     const isDraw = Array.from(squares).every(square => square.textContent !== '');
     if (isDraw) {
-        alert("Draw! Well played");
+        alert("Draw!");
         gameActive = false;
         return;
     }
