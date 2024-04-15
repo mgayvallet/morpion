@@ -57,3 +57,7 @@ body {
 .btn1{
   margin-top: 50px;
 }
+
+.rules{
+  display: none;
+} 

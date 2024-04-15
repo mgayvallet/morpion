@@ -5,6 +5,9 @@ let play = document.querySelector(".btn1")
 let container = document.querySelector(".game-container")
 let start = document.querySelector(".start")
 let retour = document.querySelector('.retour')
+let rules = document.querySelector(".btn2")
+let rulesText = document.querySelector(".rules")
+let retour2 = document.querySelector('.retour2')
 
 function getNextPlayer() {
     const player = players[currentIndex];
@@ -72,5 +75,15 @@ play.addEventListener('click', ()=>{
 
 retour.addEventListener('click', ()=>{
     container.style.display ="none"
+    start.style.display = "block"
+})
+
+rules.addEventListener('click', ()=>{
+    start.style.display = "none"
+    rulesText.style.display = "block"
+})
+
+retour2.addEventListener('click', ()=>{
+    rulesText.style.display = "none"
     start.style.display = "block"
 })
