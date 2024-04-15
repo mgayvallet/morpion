@@ -1,11 +1,11 @@
 const players = [1, 2];
 let currentIndex = 0;
 let gameActive = true; // Un nouveau drapeau pour vérifier si le jeu est actif
-let play = document.querySelector(".btn1")
-let container = document.querySelector(".game-container")
 let start = document.querySelector(".start")
-let retour = document.querySelector('.retour')
+let play = document.querySelector(".btn1")
 let rules = document.querySelector(".btn2")
+let container = document.querySelector(".game-container")
+let retour = document.querySelector('.retour')
 let rulesText = document.querySelector(".rules")
 let retour2 = document.querySelector('.retour2')
 
