@@ -1,4 +1,4 @@
-const players = [1, 2];
+const players = [1, 2];  // Continue to use 1 for X and 2 for O.
 let currentIndex = 0;
 let gameActive = true;
 let timer, countdownTimer;
@@ -14,8 +14,8 @@ const currentPlayerDisplay = document.querySelector('.current-player');
 const timerDisplay = document.querySelector('.timer');
 
 function getNextPlayer() {
-    const player = players[currentIndex];
     currentIndex = 1 - currentIndex;
+    const player = players[currentIndex];
     updatePlayerDisplay(player);
     resetTimer();
     return player;
@@ -105,7 +105,7 @@ retour2.addEventListener('click', () => {
 });
 
 function updatePlayerDisplay(player) {
-    currentPlayerDisplay.textContent = `Au tour du joueur ${player === 1 ? 'X' : 'O'}`;
+    currentPlayerDisplay.textContent = `Au tour du joueur ${player === 1 ? 'O' : 'X'}`;
 }
 
 function resetTimer() {
@@ -133,5 +133,4 @@ function stopTimer() {
     clearInterval(countdownTimer);
 }
 
-// Initial update display
-updatePlayerDisplay(players[currentIndex]);
+updatePlayerDisplay(players[currentIndex]);  // Initialize player display
