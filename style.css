@@ -26,3 +26,34 @@ body {
   margin-left: 100px;
   margin-top: 25px;
 }
+
+.game-container{
+  display: none;
+}
+
+
+.start{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  width: 100vw;
+  height: 600px;
+  width: 400px;
+  background-color: white;
+  box-shadow: 6px 1px 5px 5px;
+}
+
+
+.btn{
+  width: 250px;
+  height: 35px;
+  border-radius: 50px;
+  margin-bottom: 25px;
+  margin-left: 75px;
+
+}
+
+.btn1{
+  margin-top: 50px;
+}
