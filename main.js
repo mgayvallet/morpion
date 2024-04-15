@@ -1,7 +1,7 @@
 const players = [1, 2];
 let currentIndex = 0;
 let gameActive = true;
-let timer, countdownTimer; 
+let timer, countdownTimer;
 
 const start = document.querySelector(".start");
 const play = document.querySelector(".btn1");
@@ -48,7 +48,7 @@ function checkWin() {
     for (let condition of win) {
         const [a, b, c] = condition;
         if (squares[a].textContent && squares[a].textContent === squares[b].textContent && squares[a].textContent === squares[c].textContent) {
-            alert(`Le joueur ${squares[a].textContent} a gagné !`);
+            highlightWinningCells([a, b, c]);
             stopTimer();
             gameActive = false;
             return;
@@ -57,16 +57,23 @@ function checkWin() {
 
     const isDraw = Array.from(squares).every(square => square.textContent !== '');
     if (isDraw) {
-        alert("Match nul !");
+        alert("Draw");
         stopTimer();
         gameActive = false;
         return;
     }
 }
 
+function highlightWinningCells(cells) {
+    cells.forEach(index => {
+        squares[index].classList.add('winning-cell');
+    });
+}
+
 function resetGame() {
     squares.forEach(square => {
         square.textContent = '';
+        square.classList.remove('winning-cell');
     });
     gameActive = true;
     currentIndex = 0;
@@ -78,7 +85,7 @@ document.getElementById('resetButton').addEventListener('click', resetGame);
 play.addEventListener('click', () => {
     container.style.display = "block";
     start.style.display = "none";
-    resetGame(); 
+    resetGame();
 });
 
 retour.addEventListener('click', () => {
