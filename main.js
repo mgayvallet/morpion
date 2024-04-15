@@ -1,6 +1,10 @@
 const players = [1, 2];
 let currentIndex = 0;
 let gameActive = true; // Un nouveau drapeau pour vérifier si le jeu est actif
+let play = document.querySelector(".btn1")
+let container = document.querySelector(".game-container")
+let start = document.querySelector(".start")
+let retour = document.querySelector('.retour')
 
 function getNextPlayer() {
     const player = players[currentIndex];
@@ -59,3 +63,14 @@ function resetGame() {
 }
 
 document.getElementById('resetButton').addEventListener('click', resetGame);
+
+
+play.addEventListener('click', ()=>{
+    container.style.display = "block"
+    start.style.display = "none"
+})
+
+retour.addEventListener('click', ()=>{
+    container.style.display ="none"
+    start.style.display = "block"
+})
