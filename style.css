@@ -71,3 +71,13 @@ p{
 span{
   font-weight: bold
 }
+
+.game-info{
+  margin-left: 85px;
+  font-size: 20px;
+}
+
+
+.timer {
+  margin-left: 65px;
+}
