@@ -77,7 +77,6 @@ function resetGame() {
     });
     gameActive = true;
     currentIndex = 0;
-    resetTimer();
 }
 
 document.getElementById('resetButton').addEventListener('click', resetGame);
@@ -86,11 +85,13 @@ play.addEventListener('click', () => {
     container.style.display = "block";
     start.style.display = "none";
     resetGame();
+    resetTimer(); // Start the timer only when play is clicked
 });
 
 retour.addEventListener('click', () => {
     container.style.display = "none";
     start.style.display = "block";
+    stopTimer(); // Stops the timer when returning to start
 });
 
 rules.addEventListener('click', () => {
@@ -132,5 +133,5 @@ function stopTimer() {
     clearInterval(countdownTimer);
 }
 
+// Initial update display
 updatePlayerDisplay(players[currentIndex]);
-resetTimer();
