@@ -4,6 +4,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  background-color: grey;
 }
 
 .morpion-grid {
@@ -11,6 +12,7 @@ body {
   grid-template-columns: repeat(3, 100px); 
   grid-template-rows: repeat(3, 100px); 
   gap: 10px;
+  margin-left: 40px;
 }
 
 .cell {
@@ -23,12 +25,16 @@ body {
 }
 
 #resetButton{
-  margin-left: 100px;
+  margin-left: 140px;
   margin-top: 25px;
 }
 
 .game-container{
   display: none;
+  width: 400px;
+  height: 600px;
+  background-color: white;
+  box-shadow: 6px 1px 5px 5px;
 }
 
 
@@ -73,8 +79,9 @@ span{
 }
 
 .game-info{
-  margin-left: 85px;
+  margin-left: 125px;
   font-size: 20px;
+  margin-top: 70px;
 }
 
 
