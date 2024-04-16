@@ -25,7 +25,7 @@ body {
 }
 
 #resetButton{
-  margin-left: 140px;
+  margin-left: 175px;
   margin-top: 25px;
 }
 
@@ -79,12 +79,12 @@ span{
 }
 
 .game-info{
-  margin-left: 125px;
+  margin-left: 142px;
   font-size: 20px;
   margin-top: 70px;
 }
 
 
 .timer {
-  margin-left: 65px;
+  margin-left: 48px;
 }
