@@ -88,18 +88,3 @@ span{
 .timer {
   margin-left: 65px;
 }
-
-.winning-cell {
-  position: relative;
-}
-
-.winning-cell::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 2px;
-  height: 100%;
-  background: red;
-  transform: translate(-50%, -50%) rotate(45deg);
-}
