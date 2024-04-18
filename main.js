@@ -17,8 +17,8 @@ const squares = document.querySelectorAll(".cell");
 
 function checkWin(board) {
     const winConditions = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], 
-        [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
         [0, 4, 8], [2, 4, 6]
     ];
     for (let condition of winConditions) {
@@ -88,6 +88,7 @@ function aiPlay() {
         squares[bestMove].textContent = players.ai;
         squares[bestMove].classList.add('ai-move');
         updatePlayerDisplay(players.human);
+        currentPlayer = players.human; // Switch back to human
         setTimeout(checkGameStatus, 100);
     }
 }
@@ -96,8 +97,8 @@ squares.forEach((square, i) => {
     square.addEventListener('click', () => {
         if (!square.textContent && gameActive) {
             square.textContent = currentPlayer;
-            square.classList.add(currentPlayer === 'O' ? 'human-move' : 'ai-move');
-            updatePlayerDisplay(playWithAI ? players.ai : (currentPlayer === players.human ? players.ai : players.human));
+            square.classList.add(currentPlayer === players.human ? 'human-move' : 'ai-move');
+            updatePlayerDisplay(currentPlayer === players.human ? players.ai : players.human);
             currentPlayer = currentPlayer === players.human ? players.ai : players.human;
             setTimeout(() => {
                 checkGameStatus();
@@ -171,8 +172,9 @@ function resetTimer() {
     timer = setTimeout(() => {
         alert("Time out! Switching player.");
         if (gameActive) {
+            currentPlayer = currentPlayer === players.human ? players.ai : players.human;
+            updatePlayerDisplay(currentPlayer);
             if (playWithAI) aiPlay();
-            else updatePlayerDisplay(currentPlayer === players.human ? players.ai : players.human);
         }
     }, 30000);
     let countdown = 30;
