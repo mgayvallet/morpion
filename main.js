@@ -1,5 +1,7 @@
 const players = { human: 'O', ai: 'X' };
 let gameActive = true;
+let playWithAI = true; // Default setting to play with AI
+let currentPlayer = players.human; // Start with human as 'O'
 let timer, countdownTimer;
 
 const start = document.querySelector(".start");
@@ -79,6 +81,7 @@ function findBestMove(board) {
 }
 
 function aiPlay() {
+    if (!playWithAI) return;
     const board = Array.from(squares, s => s.textContent || null);
     const bestMove = findBestMove(board);
     if (bestMove !== -1) {
@@ -92,15 +95,16 @@ function aiPlay() {
 squares.forEach((square, i) => {
     square.addEventListener('click', () => {
         if (!square.textContent && gameActive) {
-            square.textContent = players.human;
-            square.classList.add('human-move');
-            updatePlayerDisplay(players.ai);
+            square.textContent = currentPlayer;
+            square.classList.add(currentPlayer === 'O' ? 'human-move' : 'ai-move');
+            updatePlayerDisplay(playWithAI ? players.ai : (currentPlayer === players.human ? players.ai : players.human));
+            currentPlayer = currentPlayer === players.human ? players.ai : players.human;
             setTimeout(() => {
                 checkGameStatus();
-                if (gameActive) aiPlay();
+                if (gameActive && playWithAI) aiPlay();
             }, 100);
         }
-        resetTimer()
+        resetTimer();
     });
 });
 
@@ -127,13 +131,15 @@ function resetGame() {
         square.classList.remove('human-move', 'ai-move');
     });
     gameActive = true;
-    updatePlayerDisplay(players.human);
+    currentPlayer = players.human; // Reset current player to 'O'
+    updatePlayerDisplay(currentPlayer);
     resetTimer();
 }
 
 document.getElementById('resetButton').addEventListener('click', resetGame);
 
 play.addEventListener('click', () => {
+    playWithAI = confirm("Do you want to play against the AI?");
     container.style.display = "block";
     start.style.display = "none";
     resetGame();
@@ -164,16 +170,17 @@ function resetTimer() {
     clearInterval(countdownTimer);
     timer = setTimeout(() => {
         alert("Time out! Switching player.");
-        if (gameActive) aiPlay();
+        if (gameActive) {
+            if (playWithAI) aiPlay();
+            else updatePlayerDisplay(currentPlayer === players.human ? players.ai : players.human);
+        }
     }, 30000);
     let countdown = 30;
     timerDisplay.textContent = countdown;
     countdownTimer = setInterval(() => {
         countdown--;
         timerDisplay.textContent = countdown;
-        if (countdown <= 0) {
-            clearInterval(countdownTimer);
-        }
+        if (countdown <= 0) clearInterval(countdownTimer);
     }, 1000);
 }
 
@@ -182,4 +189,4 @@ function stopTimer() {
     clearInterval(countdownTimer);
 }
 
-updatePlayerDisplay(players.human);
+updatePlayerDisplay(currentPlayer);
