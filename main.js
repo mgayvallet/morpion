@@ -100,6 +100,7 @@ squares.forEach((square, i) => {
                 if (gameActive) aiPlay();
             }, 100);
         }
+        resetTimer()
     });
 });
 
